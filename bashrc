@@ -1,18 +1,10 @@
 
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
-
-# don't put duplicate lines in the history. See bash(1) for more options
-# don't overwrite GNU Midnight Commander's setting of `ignorespace'.
 HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
-# ... or force ignoredups and ignorespace
 HISTCONTROL=ignoreboth
 
-# append to the history file, don't overwrite it
 shopt -s histappend
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+shopt -s cdspell
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -22,8 +14,6 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-PS1='\[\033[01;31m\]\w\[\033[00m\]\n${debian_chroot:+($debian_chroot)}\[\033[01;34m\]\u\[\033[01;32m\]@\[\033[01;34m\]\h\[\033[00m\]\$ '
-
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
@@ -32,7 +22,6 @@ xterm*|rxvt*)
 *)
     ;;
 esac
-
 
 # Set up TERM variables.
 # vt100 and xterm have no color in vim (at least on unixs), but if we call them xterm-color, they will.
@@ -93,16 +82,6 @@ if $TERM_IS_COLOR && ( dircolors --help && ls --color ) &> /dev/null; then
   for POSSIBLE_DIR_COLORS in "$HOME/.dir_colors" "/etc/DIR_COLORS"; do
     [[ -f "$POSSIBLE_DIR_COLORS" ]] && [[ -r "$POSSIBLE_DIR_COLORS" ]] && eval `dircolors -b "$POSSIBLE_DIR_COLORS"` && break
   done
-
-  alias ls="ls --color=auto"
-  alias ll="ls --color=auto -l"
-  alias grep='grep --color=auto'
-  alias fgrep='fgrep --color=auto'
-  alias egrep='egrep --color=auto'
-else
-  # No color, so put a slash at the end of directory names, etc. to differentiate.
-  alias ls="ls -F"
-  alias ll="ls -lF"
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -137,42 +116,35 @@ if [ "$vim" == "" ]; then
 fi
 
 alias vim="$vim"
-
-PYTHONSTARTUP=~/.pythonrc.py
-export PYTHONSTARTUP
-
-
-# git 
-parse_git_branch ()
-{
-  git name-rev HEAD 2> /dev/null | sed 's#HEAD\ \(.*\)#(git::\1)#'
-}
-parse_svn_branch() {
-  parse_svn_url | sed -e 's#^'"$(parse_svn_repository_root)"'##g' | awk -F / '{print "(svn::"$1 "/" $2 ")"}'
-}
-parse_svn_url() {
-  svn info 2>/dev/null | sed -ne 's#^URL: ##p'
-}
-parse_svn_repository_root() {
-  svn info 2>/dev/null | sed -ne 's#^Repository Root: ##p'
-}
 set -o emacs
 export EDITOR="$vim"
 export GIT_EDITOR="$vim"
 
+
 # Add git and svn branch names
-export PS1="$PS1\$(parse_git_branch)\$(parse_svn_branch) "
+#export PS1="$PS1\$(parse_git_branch)\$(parse_svn_branch) "
 
 
-# always-on flags
+# config
 set completion-ignore-case On
 
 GREP_OPTIONS="--exclude-dir=\.svn --exclude-dir=log --exclude-dir=\.git"
 export GREP_OPTION
 
+PYTHONSTARTUP=~/.pythonrc.py
+export PYTHONSTARTUP
+
+export PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\n\$ '
 
 
 # always-on aliases
+alias ls="ls --color=auto -hFA"
+alias ll="ls --color=auto -lA"
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias dir='ls --color=auto --format=vertical -hF'
+
 alias screen='TERM=screen screen'
 alias ports="lsof -i -P -sTCP:LISTEN"
 alias ack='ack -a'
@@ -183,6 +155,7 @@ alias ..='cd ..'
 alias ...='cd ../../'
 alias ....='cd ../../..'
 alias less='less -R'
+aliss hh='history'
 alias refresh="source $HOME/.bashrc"
 
 # show sorted directory sizes for all directories
@@ -192,6 +165,11 @@ alias duh='du -sch ./.*'
 
 
 # utility functions
+
+parse_git_branch ()
+{
+  git name-rev HEAD 2> /dev/null | sed 's#HEAD\ \(.*\)#(git::\1)#'
+}
 
 function find_in { 
   find . -name $1 -print | xargs grep --color=auto -inH $2; 
