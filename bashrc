@@ -165,6 +165,9 @@ alias ...='cd ../../'
 alias ....='cd ../../..'
 alias less='less -R'
 alias hh='history'
+alias dirf='find . -type d | sed -e "s/[^-][^\/]*\//  |/g" -e "s/|\([^ ]\)/|-\1/"'   
+alias lo='ls -l | sed -e 's/--x/1/g' -e 's/-w-/2/g' -e 's/-wx/3/g' -e 's/r--/4/g' -e 's/r-x/5/g' -e 's/rw-/6/g' -e 's/rwx/7/g' -e 's/---/0/g'' 
+alias hg='history | grep '
 alias refresh="source $HOME/.bashrc"
 
 # show sorted directory sizes for all directories
@@ -190,8 +193,7 @@ up(){
   cd $d
 }
 
-parse_git_branch ()
-{
+parse_git_branch () {
   git name-rev HEAD 2> /dev/null | sed 's#HEAD\ \(.*\)#(git::\1)#'
 }
 
@@ -252,6 +254,16 @@ function fawk {
     last="}'"
     cmd="${first}\$${1}${last}"
     eval $cmd
+}
+
+# remove empty lines
+nb() { 
+    sed '/^$/d' "${1}"; 
+} 
+
+# external ip from external source
+eip() { 
+    curl -s http://rlachenal.com/iptest.php | awk -F"<" '{ print $1 } '; 
 }
 
 
