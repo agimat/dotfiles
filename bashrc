@@ -231,6 +231,14 @@ seq () {
   echo $output
 }
 
+# numbered column awk, like - fawk 2 for column 2 extraction on default delimiter
+function fawk {
+    first="awk '{print "
+    last="}'"
+    cmd="${first}\$${1}${last}"
+    eval $cmd
+}
+
 
 # aws
 
