@@ -1,3 +1,6 @@
+# sourced from public and personal repos
+# agimat@gmail.com
+
 HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
 HISTCONTROL=ignoreboth
 
