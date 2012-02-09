@@ -175,6 +175,21 @@ alias duh='du -sch ./.*'
 
 # utility functions
 
+# dir up x, like up 3 (../../../), up 4
+up(){
+  local d=""
+  limit=$1
+  for ((i=1 ; i <= limit ; i++))
+    do
+      d=$d/..
+    done
+  d=$(echo $d | sed 's/^\///')
+  if [ -z "$d" ]; then
+    d=..
+  fi
+  cd $d
+}
+
 parse_git_branch ()
 {
   git name-rev HEAD 2> /dev/null | sed 's#HEAD\ \(.*\)#(git::\1)#'
