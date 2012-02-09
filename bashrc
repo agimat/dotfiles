@@ -1,4 +1,3 @@
-
 HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
 HISTCONTROL=ignoreboth
 
@@ -155,7 +154,7 @@ alias ..='cd ..'
 alias ...='cd ../../'
 alias ....='cd ../../..'
 alias less='less -R'
-aliss hh='history'
+alias hh='history'
 alias refresh="source $HOME/.bashrc"
 
 # show sorted directory sizes for all directories
