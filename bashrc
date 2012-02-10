@@ -16,15 +16,6 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
-
 # Set up TERM variables.
 # vt100 and xterm have no color in vim (at least on unixs), but if we call them xterm-color, they will.
 # (vt100 for F-Secure SSH.)
@@ -146,8 +137,8 @@ export GREP_OPTION
 PYTHONSTARTUP=~/.pythonrc.py
 export PYTHONSTARTUP
 
-export PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\n\$ '
-
+#export PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\n\$ '
+export PS1='\[\e]0;\h \w\a\]\[\033[32m\][\[\033[0m\]\u\[\033[32m\]@\[\033[0m\]\h\[\033[32m\]] - [\[\033[0m\]\w\[\033[32m\]]\[\033[32m\] #\[\033[0m\] '
 
 # always-on aliases
 alias ls="ls --color=auto -hFA"
@@ -171,7 +162,7 @@ alias hh='history'
 alias dirf='find . -type d | sed -e "s/[^-][^\/]*\//  |/g" -e "s/|\([^ ]\)/|-\1/"'   
 alias lo='ls -l | sed -e 's/--x/1/g' -e 's/-w-/2/g' -e 's/-wx/3/g' -e 's/r--/4/g' -e 's/r-x/5/g' -e 's/rw-/6/g' -e 's/rwx/7/g' -e 's/---/0/g'' 
 alias hg='history | grep '
-alias refresh="source $HOME/.bashrc"
+alias reload="source $HOME/dotfiles/bashrc"
 
 # show sorted directory sizes for all directories
 alias dua='du -ch --max-depth=1'
