@@ -138,7 +138,7 @@ PYTHONSTARTUP=~/.pythonrc.py
 export PYTHONSTARTUP
 
 #export PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\n\$ '
-export PS1='\[\e]0;\h \w\a\]\[\033[32m\][\[\033[0m\]\u\[\033[32m\]@\[\033[0m\]\h\[\033[32m\]] - [\[\033[0m\]\w\[\033[32m\]]\[\033[32m\] #\[\033[0m\] '
+export PS1='\[\e]0;\h \w\a\]\[\033[32m\][\[\033[0m\]\u\[\033[32m\]@\[\033[0m\]\h\[\033[32m\]] - [\[\033[0m\]\w\[\033[32m\]]\[\033[32m\] $\[\033[0m\] '
 
 # always-on aliases
 alias ls="ls --color=auto -hFA"
