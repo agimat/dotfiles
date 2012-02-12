@@ -31,7 +31,7 @@ case $TERM in
     TERM_CAN_TITLE=true
   ;;
 
-  xterm-color|color_xterm|rxvt|Eterm|screen*) # screen.linux|screen-w
+  xterm-256color|xterm-color|color_xterm|rxvt|Eterm|screen*) # screen.linux|screen-w
     TERM_IS_COLOR=true
     TERM_NOT_RECOGNIZED_AS_COLOR_BY_VIM=false
     TERM_NOT_RECOGNIZED_BY_SUN_UTILS=true
@@ -262,6 +262,11 @@ eip() {
     curl -s http://rlachenal.com/iptest.php | awk -F"<" '{ print $1 } '; 
 }
 
+# pull vundle
+git_vundle() {
+    git clone https://github.com/gmarik/vundle.git ~/dotfiles/bundle/vundle
+    vim -u ~/dotfiles/vimrc +BundleInstall +qall
+}
 
 # aws
 
@@ -281,5 +286,5 @@ fi
 
 alias gfl='cd $HOME/ap/gflogin.com'
 alias ap='cd $HOME/ap'
-alias ap_nats='cd /home/httpd/nats/natsap/'
+alias apnats='cd /home/httpd/nats/natsap/'
 

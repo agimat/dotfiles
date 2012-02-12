@@ -4,8 +4,6 @@
 set nocompatible               
 set fileformats=unix,dos,mac
 set background=dark
-set shiftwidth=2
-set tabstop=2
 set ruler
 set more
 set autoread
@@ -17,7 +15,7 @@ set showmode
 set showcmd
 set autoindent smartindent
 set smarttab
-set et sw=4 ts=4
+set sw=4 ts=4
 set scrolloff=5
 set sidescrolloff=5
 set history=200
@@ -52,7 +50,7 @@ filetype plugin on
 syntax on
 
 "------------------------------------------------------------"
-
+set runtimepath+=~/dotfiles/bundle/vundle/
 set rtp+=~/dotfiles/bundle/vundle/
 call vundle#rc()
 
@@ -74,7 +72,6 @@ filetype plugin indent on     " required!
 
 "------------------------------------------------------------"
 
-" Poweline 
 let g:Powerline_symbols = 'fancy'
 set laststatus=2
 
@@ -97,3 +94,4 @@ map cc :.,$s/^ *//<CR>
 " highlight flicker cterm=bold ctermfg=white
 " au CursorMoved <buffer> exe 'match flicker /\V\<'.escape(expand('<cword>'), '/').'\>/'
 
+set t_Co=256
