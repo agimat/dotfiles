@@ -67,6 +67,7 @@ Bundle 'vim-scripts/IndexedSearch'
 Bundle 'gregsexton/MatchTag'
 Bundle 'itspriddle/vim-jquery'
 Bundle 'vim-scripts/ZoomWin'
+Bundle 'vim-scripts/EasyMotion'
 
 filetype plugin indent on     " required! 
 "
