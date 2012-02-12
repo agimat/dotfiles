@@ -58,6 +58,12 @@ Bundle 'gmarik/vundle'
 
 " original repos on github
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-surround'
+Bundle 'vim-scripts/IndexedSearch'
+Bundle 'gregsexton/MatchTag'
+Bundle 'itspriddle/vim-jquery'
+Bundle 'vim-scripts/ZoomWin'
 
 filetype plugin indent on     " required! 
 "
@@ -74,6 +80,7 @@ filetype plugin indent on     " required!
 
 let g:Powerline_symbols = 'fancy'
 set laststatus=2
+" let g:jellybeans_use_lowcolor_black = 0
 
 " highlight current line 
 " set cul                                           
@@ -94,4 +101,12 @@ map cc :.,$s/^ *//<CR>
 " highlight flicker cterm=bold ctermfg=white
 " au CursorMoved <buffer> exe 'match flicker /\V\<'.escape(expand('<cword>'), '/').'\>/'
 
-set t_Co=256
+" 
+" set t_Co=256 
+
+" Open Nerdtree if no file specified in commandline
+autocmd vimenter * if !argc() | NERDTree | endif
+
+" Close if Nerdtree is the last window open
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
