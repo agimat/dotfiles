@@ -30,6 +30,7 @@ set noerrorbells
 set shell=bash
 set wildmode=longest:full
 set wildmenu
+set encoding=utf-8
 
 "------------------------------------------------------------"
 
@@ -37,7 +38,9 @@ set incsearch
 set ignorecase
 set hlsearch
 set showmatch
+set matchtime=2
 set diffopt=filler,iwhite
+set wildignore+=*.o,*.obj,*.exe,*.so,*.dll,*.pyc,.svn,.hg,.bzr,.git,.sass-cache
 
 
 "------------------------------------------------------------"
@@ -48,9 +51,9 @@ filetype off
 filetype indent on
 filetype plugin on              
 syntax on
+let g:indent_guides_enable_on_vim_startup=1
 
 "------------------------------------------------------------"
-set runtimepath+=~/dotfiles/bundle/vundle/
 set rtp+=~/dotfiles/bundle/vundle/
 call vundle#rc()
 
@@ -109,4 +112,34 @@ autocmd vimenter * if !argc() | NERDTree | endif
 
 " Close if Nerdtree is the last window open
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" Window Movement
+nmap <silent> <C-h> :wincmd h<CR>
+nmap <silent> <C-j> :wincmd j<CR>
+nmap <silent> <C-k> :wincmd k<CR>
+nmap <silent> <C-l> :wincmd l<CR>
+" Previous Window
+nmap <silent> <C-p> :wincmd p<CR>
+"
+" Equal Size Windows
+nmap <silent> <leader>w= :wincmd =<CR>
+"
+" Window Splitting
+nmap <silent> <leader>sh :split<CR>
+nmap <silent> <leader>sv :vsplit<CR>
+
+" Nerdtree 
+nnoremap <leader>nn :NERDTreeToggle<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
+let NERDTreeShowBookmarks=1
+let NERDTreeChDirMode=2 " Change the NERDTree directory to the root node
+
+" zoomwin
+nmap <silent> <leader>wo :ZoomWin<CR>
+
+" vundle
+nmap <Leader>bi :BundleInstall<CR>
+nmap <Leader>bc :BundleClean<CR>
+
+
 
