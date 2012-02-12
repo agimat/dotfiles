@@ -118,7 +118,7 @@ if [ "$vim" == "" ]; then
     vim="vi -v"
 fi
 
-alias vim="$vim"
+alias vim="$vim -u ~/dotfiles/vimrc"
 set -o emacs
 export EDITOR="$vim"
 export GIT_EDITOR="$vim"

@@ -79,8 +79,8 @@ let g:Powerline_symbols = 'fancy'
 set laststatus=2
 
 " highlight current line 
-set cul                                           
-hi CursorLine term=none cterm=none ctermbg=3     
+" set cul                                           
+" hi CursorLine term=none cterm=none ctermbg=3     
 
 " mappings 
 " toggle list mode
