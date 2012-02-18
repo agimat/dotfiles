@@ -86,7 +86,6 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -123,10 +122,8 @@ set -o emacs
 export EDITOR="$vim"
 export GIT_EDITOR="$vim"
 
-
 # Add git and svn branch names
 #export PS1="$PS1\$(parse_git_branch)\$(parse_svn_branch) "
-
 
 # config
 set completion-ignore-case On
@@ -141,14 +138,20 @@ export PYTHONSTARTUP
 export PS1='\[\e]0;\h \w\a\]\[\033[32m\][\[\033[0m\]\u\[\033[32m\]@\[\033[0m\]\h\[\033[32m\]]:\[\033[0m\]\w\[\033[32m\]\[\033[32m\] $\[\033[0m\] '
 export PS1='\[\e]0;\h \w\a\]\[\033[32m\][\[\033[0m\]\u\[\033[32m\]@\[\033[0m\]\h\[\033[32m\]]:[\[\033[0m\]\w\[\033[32m\]]\[\033[32m\] $\[\033[0m\] '
 
-
 # always-on aliases
-alias ls="ls --color=auto -hFA"
-alias ll="ls --color=auto -lA"
+if ( $(uname) == "FreeBSD"); then 
+    alias ls="ls -laG"
+    alias ll="ls -lAG"
+    alias dir='ls -laG -hF'
+else 
+    alias ls="ls --color=auto -hFA"
+    alias ll="ls --color=auto -lA"
+    alias dir='ls --color=auto --format=vertical -hF'
+fi 
+
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-alias dir='ls --color=auto --format=vertical -hF'
 
 alias screen='TERM=screen screen'
 alias ports="lsof -i -P -sTCP:LISTEN"
@@ -164,7 +167,8 @@ alias hh='history'
 alias dirf='find . -type d | sed -e "s/[^-][^\/]*\//  |/g" -e "s/|\([^ ]\)/|-\1/"'   
 alias lo='ls -l | sed -e 's/--x/1/g' -e 's/-w-/2/g' -e 's/-wx/3/g' -e 's/r--/4/g' -e 's/r-x/5/g' -e 's/rw-/6/g' -e 's/rwx/7/g' -e 's/---/0/g'' 
 alias hg='history | grep '
-alias reload="source $HOME/dotfiles/bashrc"
+alias reload="source $HOME/dotfiles/bashrc
+alias he='w; screen -ls; last -5; uptime; free';
 
 # show sorted directory sizes for all directories
 alias dua='du -ch --max-depth=1'
@@ -281,10 +285,25 @@ if [[ -f "$HOME/.amazon_keys" ]]; then
     source "$HOME/.amazon_keys";
 fi
 
-
 # NH specific 
+
+if ($(uname) == "FreeBSD"); then 
+    alias ap='cd $HOME/ap'
+    alias ap='cd $HOME/at'
+    alias gfl='cd $HOME/ap/gflogin.com'
+    alias apnats='cd /home/httpd/nats/natsap/'
+    alias atnats='cd /home/httpd/nats/natsap/'
+else 
+    alias rp='cd $HOME/rp'
+    alias pr='cd $HOME/pr'
+    alias rpnats='cd /home/httpd/nats/natsap/'
+    alias prnats='cd /home/httpd/nats/natsap/'
+    alias rpcms='cd /home/httpd/nats/natsap/'
+    alias prcms='cd /home/httpd/nats/natsap/'
+    alias rpmem='cd /home/httpd/nats/natsap/'
+    alias prmem='cd /home/httpd/nats/natsap/'
+fi 
 
 alias gfl='cd $HOME/ap/gflogin.com'
 alias ap='cd $HOME/ap'
 alias apnats='cd /home/httpd/nats/natsap/'
-
