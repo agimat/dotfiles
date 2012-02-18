@@ -112,16 +112,6 @@ if [ "$venwrap" != "" ]; then
     source $venwrap
 fi
 
-vim=`type -P vim`
-if [ "$vim" == "" ]; then
-    vim="vi -v"
-fi
-
-alias vim="$vim -u ~/dotfiles/vimrc"
-set -o emacs
-export EDITOR="$vim"
-export GIT_EDITOR="$vim"
-
 # Add git and svn branch names
 #export PS1="$PS1\$(parse_git_branch)\$(parse_svn_branch) "
 
@@ -156,7 +146,6 @@ alias egrep='egrep --color=auto'
 alias screen='TERM=screen screen'
 alias ports="lsof -i -P -sTCP:LISTEN"
 alias ack='ack -a'
-alias nn="nano -T 4 -w"
 alias findbig="find . -type f -exec ls -s {} \; | sort -n -r | head -5"
 alias cls='clear;ls'
 alias ..='cd ..'
@@ -177,6 +166,10 @@ alias duh='du -sch ./.*'
 
 
 # utility functions
+
+command_exists () {
+    type "$1" &> /dev/null ;
+}
 
 # dir up x, like up 3 (../../../), up 4
 up(){
@@ -307,3 +300,34 @@ fi
 alias gfl='cd $HOME/ap/gflogin.com'
 alias ap='cd $HOME/ap'
 alias apnats='cd /home/httpd/nats/natsap/'
+
+
+
+# check for preferred alternates
+if command_exists nano ; then 
+    alias nn="nano -T 4 -w"
+fi 
+
+if command_exists vim ; then
+    vim=`type -P vim`
+    if [ "$vim" == "" ]; then
+        vim="vi -v"
+    fi
+    alias vim="$vim -u ~/dotfiles/vimrc"
+    export EDITOR="$vim"
+    export GIT_EDITOR="$vim"
+fi
+
+if command_exists nano ; then
+    if [ "$vim" != "" ]; then
+      export EDITOR="nano -w -T4"
+      export GIT_EDITOR="$EDITOR"
+    if 
+    alias nn="$EDITOR"
+elif command_exists pico ; then
+    if [ "$vim" != "" ]; then
+      export EDITOR="pico -w"
+      export GIT_EDITOR="$EDITOR"
+    fi
+    alias nn="$EDITOR"
+fi
