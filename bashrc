@@ -186,9 +186,9 @@ up(){
   cd $d
 }
 
-parse_git_branch () {
-  git name-rev HEAD 2> /dev/null | sed 's#HEAD\ \(.*\)#(git::\1)#'
-}
+#parse_git_branch () {
+#  git name-rev HEAD 2> /dev/null | sed 's#HEAD\ \(.*\)#(git::\1)#'
+#}
 
 function find_in { 
   find . -name $1 -print | xargs grep --color=auto -inH $2; 
@@ -322,8 +322,10 @@ elif [ command_exists pico ]; then
     fi
 fi
 
-if command_exists byobu; then 
-    alias screen='byobu'
-else
-	alias screen="screen -c $HOME/dotfiles/screenrc"
+if [ "$TERM" != "screen" ]; then 
+	if command_exists byobu; then 
+    	alias screen='byobu -c $HOME/dotfiles/byoburc'
+	else
+		alias screen="screen -c $HOME/dotfiles/screenrc"
+	fi 
 fi 
