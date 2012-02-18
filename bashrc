@@ -129,7 +129,7 @@ export PS1='\[\e]0;\h \w\a\]\[\033[32m\][\[\033[0m\]\u\[\033[32m\]@\[\033[0m\]\h
 export PS1='\[\e]0;\h \w\a\]\[\033[32m\][\[\033[0m\]\u\[\033[32m\]@\[\033[0m\]\h\[\033[32m\]]:[\[\033[0m\]\w\[\033[32m\]]\[\033[32m\] $\[\033[0m\] '
 
 # always-on aliases
-if ( $(uname) == "FreeBSD"); then 
+if [ $(uname) == "FreeBSD" ]; then 
     alias ls="ls -laG"
     alias ll="ls -lAG"
     alias dir='ls -laG -hF'
@@ -156,8 +156,8 @@ alias hh='history'
 alias dirf='find . -type d | sed -e "s/[^-][^\/]*\//  |/g" -e "s/|\([^ ]\)/|-\1/"'   
 alias lo='ls -l | sed -e 's/--x/1/g' -e 's/-w-/2/g' -e 's/-wx/3/g' -e 's/r--/4/g' -e 's/r-x/5/g' -e 's/rw-/6/g' -e 's/rwx/7/g' -e 's/---/0/g'' 
 alias hg='history | grep '
-alias reload="source $HOME/dotfiles/bashrc
-alias he='w; screen -ls; last -5; uptime; free';
+alias reload="source $HOME/dotfiles/bashrc"
+alias he='w; screen -ls; last -5; uptime; free'
 
 # show sorted directory sizes for all directories
 alias dua='du -ch --max-depth=1'
@@ -280,7 +280,7 @@ fi
 
 # NH specific 
 
-if ($(uname) == "FreeBSD"); then 
+if [ $(uname) == "FreeBSD" ]; then 
     alias ap='cd $HOME/ap'
     alias ap='cd $HOME/at'
     alias gfl='cd $HOME/ap/gflogin.com'
@@ -289,45 +289,41 @@ if ($(uname) == "FreeBSD"); then
 else 
     alias rp='cd $HOME/rp'
     alias pr='cd $HOME/pr'
-    alias rpnats='cd /home/httpd/nats/natsap/'
-    alias prnats='cd /home/httpd/nats/natsap/'
-    alias rpcms='cd /home/httpd/nats/natsap/'
-    alias prcms='cd /home/httpd/nats/natsap/'
-    alias rpmem='cd /home/httpd/nats/natsap/'
-    alias prmem='cd /home/httpd/nats/natsap/'
+    alias rpnats='cd /home/httpd/nats/natsrp4/'
+    alias prnats='cd /home/httpd/nats/natspr/'
+    alias vc='cd $HOME/rp/vicecrew.com/public_html'
+    alias bn='cd $HOME/rp/boynetwork.com/public_html'
+    alias ta='cd $HOME/at/teenieaccess.com/public_html'
 fi 
 
 alias gfl='cd $HOME/ap/gflogin.com'
 alias ap='cd $HOME/ap'
 alias apnats='cd /home/httpd/nats/natsap/'
 
-
-
 # check for preferred alternates
-if command_exists nano ; then 
-    alias nn="nano -T 4 -w"
-fi 
-
-if command_exists vim ; then
-    vim=`type -P vim`
-    if [ "$vim" == "" ]; then
-        vim="vi -v"
-    fi
+if command_exists vim; then
+    vim="vi -v"
     alias vim="$vim -u ~/dotfiles/vimrc"
     export EDITOR="$vim"
     export GIT_EDITOR="$vim"
 fi
 
-if command_exists nano ; then
+if command_exists nano; then
     if [ "$vim" != "" ]; then
       export EDITOR="nano -w -T4"
       export GIT_EDITOR="$EDITOR"
-    if 
-    alias nn="$EDITOR"
-elif command_exists pico ; then
-    if [ "$vim" != "" ]; then
-      export EDITOR="pico -w"
-      export GIT_EDITOR="$EDITOR"
+      alias nn="$EDITOR"
     fi
-    alias nn="$EDITOR"
+elif [ command_exists pico ]; then
+    if [ "$vim" != "" ]; then
+       export EDITOR="pico -w"
+       export GIT_EDITOR="$EDITOR"
+       alias nn="$EDITOR"
+    fi
 fi
+
+if command_exists byobu; then 
+    alias screen='byobu'
+else
+	alias screen="screen -c $HOME/dotfiles/screenrc"
+fi 
