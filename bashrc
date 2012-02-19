@@ -157,7 +157,7 @@ alias dirf='find . -type d | sed -e "s/[^-][^\/]*\//  |/g" -e "s/|\([^ ]\)/|-\1/
 alias lo='ls -l | sed -e 's/--x/1/g' -e 's/-w-/2/g' -e 's/-wx/3/g' -e 's/r--/4/g' -e 's/r-x/5/g' -e 's/rw-/6/g' -e 's/rwx/7/g' -e 's/---/0/g'' 
 alias hg='history | grep '
 alias reload="source $HOME/dotfiles/bashrc"
-alias he='w; screen -ls; last -5; uptime; free'
+alias he='w; screen -ls; df -h; uptime; free'
 
 # show sorted directory sizes for all directories
 alias dua='du -ch --max-depth=1'
