@@ -282,10 +282,9 @@ fi
 
 if [ $(uname) == "FreeBSD" ]; then 
     alias ap='cd $HOME/ap'
-    alias ap='cd $HOME/at'
+    alias at='cd $HOME/at'
     alias gfl='cd $HOME/ap/gflogin.com'
-    alias apnats='cd /home/httpd/nats/natsap/'
-    alias atnats='cd /home/httpd/nats/natsap/'
+    alias nats='cd /home/httpd/nats/'
 else 
     alias rp='cd $HOME/rp'
     alias pr='cd $HOME/pr'
