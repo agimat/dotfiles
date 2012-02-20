@@ -278,26 +278,9 @@ if [[ -f "$HOME/.amazon_keys" ]]; then
     source "$HOME/.amazon_keys";
 fi
 
-# NH specific 
 
-if [ $(uname) == "FreeBSD" ]; then 
-    alias ap='cd $HOME/ap'
-    alias at='cd $HOME/at'
-    alias gfl='cd $HOME/ap/gflogin.com'
-    alias nats='cd /home/httpd/nats/'
-else 
-    alias rp='cd $HOME/rp'
-    alias pr='cd $HOME/pr'
-    alias rpnats='cd /home/httpd/nats/natsrp4/'
-    alias prnats='cd /home/httpd/nats/natspr/'
-    alias vc='cd $HOME/rp/vicecrew.com/public_html'
-    alias bn='cd $HOME/rp/boynetwork.com/public_html'
-    alias ta='cd $HOME/at/teenieaccess.com/public_html'
-fi 
-
-alias gfl='cd $HOME/ap/gflogin.com'
-alias ap='cd $HOME/ap'
-alias apnats='cd /home/httpd/nats/natsap/'
+# server specific 
+source ~/dotfiles/nh.sh 
 
 # check for preferred alternates
 if command_exists vim; then
