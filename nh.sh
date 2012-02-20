@@ -10,6 +10,7 @@ if [[ $(hostname) == *"webair"* || $(hostname) == *"mojohost"* ]]; then
                         alias xs='cd $HOME/ap/xs.amateurplatinum.com'
                 else
                         alias xs='cd $HOME/ap/xs.amateurtraffic.com'
+                        alias ta='cd $HOME/ap/teenieaccess.com/public_html'
                 fi
         else
             alias rp='cd $HOME/rp'
