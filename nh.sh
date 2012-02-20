@@ -5,7 +5,7 @@ if [[ $(hostname) == *"webair"* || $(hostname) == *"mojohost"* ]]; then
             alias ap='cd $HOME/ap'
             alias at='cd $HOME/at'
             alias gfl='cd $HOME/ap/gflogin.com'
-            alias nats='cd /home/httpd/nats/'
+            alias nats='cd /www/virtual/media/nats/'
                 if [[ $(hostname) == *"seav2"* ]]; then
                         alias xs='cd $HOME/ap/xs.amateurplatinum.com'
                 else
