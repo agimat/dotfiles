@@ -45,6 +45,7 @@ set wildignore+=*.o,*.obj,*.exe,*.so,*.dll,*.pyc,.svn,.hg,.bzr,.git,.sass-cache
 
 "------------------------------------------------------------"
 
+let mapleader = ","
 let maplocalleader=','
 
 filetype off     
@@ -141,6 +142,5 @@ nmap <silent> <leader>wo :ZoomWin<CR>
 " vundle
 nmap <Leader>bi :BundleInstall<CR>
 nmap <Leader>bc :BundleClean<CR>
-
 
 
