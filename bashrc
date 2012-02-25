@@ -296,7 +296,7 @@ elif command_exists vim; then
 fi
 
 if command_exists nano; then
-      alias nn="$EDITOR"
+      alias nn="nano -w -T4"
 fi
 
 if [ "$TERM" != "screen" ]; then 
