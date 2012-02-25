@@ -296,11 +296,7 @@ elif command_exists vim; then
 fi
 
 if command_exists nano; then
-    if [ "$vim" == "" ]; then
-      export EDITOR="nano -w -T4"
-      export GIT_EDITOR="$EDITOR"
       alias nn="$EDITOR"
-    fi
 fi
 
 if [ "$TERM" != "screen" ]; then 
