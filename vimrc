@@ -69,6 +69,7 @@ Bundle 'gregsexton/MatchTag'
 Bundle 'itspriddle/vim-jquery'
 Bundle 'vim-scripts/ZoomWin'
 Bundle 'vim-scripts/EasyMotion'
+Bundle 'fholgado/minibufexpl'
 
 filetype plugin indent on     " required! 
 "
@@ -100,6 +101,9 @@ nmap <LocalLeader>pp :set paste!<cr>
 " handle cursor wrap on long lines
 inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
+
+
+noremap <silent><Leader>/ :nohls<CR>
 
 map cc :.,$s/^ *//<CR>
 
@@ -142,5 +146,22 @@ nmap <silent> <leader>wo :ZoomWin<CR>
 " vundle
 nmap <Leader>bi :BundleInstall<CR>
 nmap <Leader>bc :BundleClean<CR>
+
+
+" python
+
+autocmd BufRead *.py set tabstop=4
+autocmd BufRead *.py set nowrap
+autocmd BufRead *.py set go+=b
+
+autocmd BufRead *.py set makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
+autocmd BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+autocmd BufRead *.py nmap <F5> :!python %<CR>
+
+
+# php 
+
+map <Leader>p :! php -l %<CR>
+map <Leader>P :! php -q %<CR>
 
 
