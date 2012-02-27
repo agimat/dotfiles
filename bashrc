@@ -283,25 +283,20 @@ fi
 source ~/dotfiles/nh.sh 
 
 # check for preferred alternates
-if command_exists vim; then
+if command_exists vi; then
     vim="vi -v"
+    alias vim="$vim -u ~/dotfiles/vimrc"
+    export EDITOR="$vim"
+    export GIT_EDITOR="$vim"
+elif command_exists vim; then 
+    vim="vim -v"
     alias vim="$vim -u ~/dotfiles/vimrc"
     export EDITOR="$vim"
     export GIT_EDITOR="$vim"
 fi
 
 if command_exists nano; then
-    if [ "$vim" != "" ]; then
-      export EDITOR="nano -w -T4"
-      export GIT_EDITOR="$EDITOR"
-      alias nn="$EDITOR"
-    fi
-elif [ command_exists pico ]; then
-    if [ "$vim" != "" ]; then
-       export EDITOR="pico -w"
-       export GIT_EDITOR="$EDITOR"
-       alias nn="$EDITOR"
-    fi
+      alias nn="nano -w -T4"
 fi
 
 if [ "$TERM" != "screen" ]; then 
